@@ -8,3 +8,13 @@ health = 0;
 
 #Chance of attacking
 agression = 0.5;
+
+#Difficulty rating
+difficulty = 1;
+
+#Random enemy messages
+splashMessages = Message 1|Message 2;
+deathMessage = Death Message. Use [THING] to say the player's random item;
+
+#Description
+description = Dessciption;
