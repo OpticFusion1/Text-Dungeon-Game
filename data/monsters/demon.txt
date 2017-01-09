@@ -1,0 +1,20 @@
+#Monster name
+name = Demon;
+
+#Stats
+attack = 12;
+defense = 10;
+health = 15;
+
+#Chance of attacking
+agression = 0.75;
+
+#Difficulty rating
+difficulty = 5;
+
+#Random enemy messages
+splashMessages = The demon snarls at you|The demon summons a fireball in it's hand and eats it|Smells like sins;
+deathMessage = The demon screams, it's body collapsing as it's sucked back into hell.;
+
+#Description
+description = A tall, red creature with horns and evil looking eyes;

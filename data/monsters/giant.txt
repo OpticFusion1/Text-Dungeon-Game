@@ -1,0 +1,20 @@
+#Monster name
+name = Giant;
+
+#Stats
+attack = 10;
+defense = 10;
+health = 20;
+
+#Chance of attacking
+agression = 2;
+
+#Difficulty rating
+difficulty = 4;
+
+#Random enemy messages
+splashMessages = The giant stomps, shaking the ground|The giant picks flesh from it's teeth|The giant glares at you menacingly;
+deathMessage = The giant topples backwards, collapsing to the ground;
+
+#Description
+description = A massive man with a club and anger issues. Do not provoke under any- whoops, too late.;

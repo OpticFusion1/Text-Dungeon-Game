@@ -1,0 +1,20 @@
+#Monster name
+name = Vampire;
+
+#Stats
+attack = 8;
+defense = 3;
+health = 10;
+
+#Chance of attacking
+agression = 1.5;
+
+#Difficulty rating
+difficulty = 2;
+
+#Random enemy messages
+splashMessages = The Vampire sharpens it's teeth|The vampire hovers in the air, glaring at you|The vampire stomps the ground;
+deathMessage = The vampire lets out a bloodcurdling shriek, exploding into a cloud of dust;
+
+#Description
+description = A tattoed, horned beast with teeth like knives and red, piercing eyes.;

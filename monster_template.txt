@@ -1,0 +1,10 @@
+#Monster name
+name = Monster;
+
+#Stats
+attack = 0;
+defense = 0;
+health = 0;
+
+#Chance of attacking
+agression = 0.5;

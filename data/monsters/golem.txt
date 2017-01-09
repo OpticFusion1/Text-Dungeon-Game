@@ -1,0 +1,20 @@
+#Monster name
+name = Stone Golem;
+
+#Stats
+attack = 15;
+defense = 5;
+health = 5;
+
+#Chance of attacking
+agression = 0.5;
+
+#Difficulty rating
+difficulty = 5;
+
+#Random enemy messages
+splashMessages = The golem stares at you with empty eyes|The golem questions it's existence|The golem repairs itself with bits of stone;
+deathMessage = The golem falls to it's knees, looking up at you one last time before crumbling to pieces;
+
+#Description
+description = A tall statue-like being with empty eyes and the strength of an army;

@@ -1,0 +1,17 @@
+#Objects you take into the dungeon
+dungeonObjects = gun|squirrel pelt|can of worms|copy of No Mans Sky|anime body pillow|copy of 'Divergent'|e|can of whoop ass|random splash message|pile of socks|Elf-On-The-Shelf|stank on a dank|little man|random object|meme page|deteriorating mental state|filthy library keyboard|javadoc|old mug of eggnog|d20|Atari 2600|NFL jersey|shotgun under your chin|box full of blood|giant sword|giant cake|half of a kit kat|flash drive full of pictures of dogs|404 Error|Baby slime|Baby dragon;
+
+#Messages that pop up when you defend yourself
+defendMessages = You curl into a ball for defense!|You yell at the [ENEMY] then run into a wall!|You defend yourself!|You hold up your [THING] in defense!|You squat.;
+
+#Messages when you don't manage to flee
+fleeFailureMessages = You trip on a rock when trying to flee|The [ENEMY] grabs you before you can flee|Your intense lust for the [ENEMY] prevents you from fleeing|Don't you know it's rude to run from a fight?|You fail to flee. So sad.|You flee, but run right back into [ENEMY]|I'm outta here... or not.|You flee from the [ENEMY]!\n....\nWhoops, no you didn't, my bad|You try to run, but your [ITEM] gets in the way|Who are you running from?;
+
+#Messages for when you rest
+restMessages = You and the [ENEMY] have a nice tea party together|You take a nap. The [ENEMY] joins you|You down 27 red bulls and transcend to the next dimension|You knock out the [ENEMY] and take a nap on it's unconcious body|You take a nap on a Sleepys brand matress|You rest|You lay on the ground with the [ENEMY] and feel like garbage|You play a friendly game of charades with the [ENEMY]|You play a game of DnD with the [ENEMY] and have a really good time|You binge watch Netflix with the [ENEMY]|You take a nap|The [ENEMY] offers you a cup of hot Coco. You happily accept|The [ENEMY] and you take a power nap|You cuddle up with your [THING]|You, your [THING], and the [ENEMY] sleep together;
+
+#Messages for when you die
+deathMessages = You and your [THING] are lost in the endless catacombs forever...|YOU DIED|You have died|The [ENEMY] stomps on your corpse...|Guess what? You're dead|Dead. Not big soup rice.|How could this happen to meee... I made my mistaaake...;
+
+#Messages for when you crit
+critMessages = You suplex a boulder onto the [ENEMY]|You beat the [ENEMY] with your [THING]|You glare at the [ENEMY]. It takes damage out of sheer terror|You insult the [ENEMY]'s mother|You kick the [ENEMY] into a wall. How cruel|You call in an airstrike on the [ENEMY]|You throw a folding chair at the [ENEMY]|You cyberbully the [ENEMY]... what the hell is your problem?|You leave a mean comment on the [ENEMY]'s deviantart page. C'mon, man, they're just starting|Even now, the evil seed of what you've done germinates within you|Critical hit!;

@@ -1,0 +1,20 @@
+#Monster name
+name = Unicorn;
+
+#Stats
+attack = 7;
+defense = 7;
+health = 7;
+
+#Chance of attacking
+agression = 0.4;
+
+#Difficulty rating
+difficulty = 2;
+
+#Random enemy messages
+splashMessages = The Unicorn prances around|The Unicorn plays techno music from it's horn|The Unicorn brushes it's mane|The Unicorn brushes dirt into a small pile with it's hoof|The Unicorn questions it's mortality;
+deathMessage = You tear off the Unicorn's horn and stab it in the heart with it. I, meanwhile, call 911 and report you as a complete sociopath;
+
+#Description
+description = An elegant, majestic creature with the body of a horse and the horn of a unicorn.;

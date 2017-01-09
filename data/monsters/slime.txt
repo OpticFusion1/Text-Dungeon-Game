@@ -1,0 +1,20 @@
+#Monster name
+name = Slime;
+
+#Stats
+attack = 5;
+defense = 1;
+health = 5;
+
+#Chance of attacking
+agression = 0.5;
+
+#Difficulty rating
+difficulty = 1;
+
+#Random enemy messages
+splashMessages = The slime hops up and down excitedly!|The slime licks your [THING]|The slime rolls around in a circle;
+deathMessage = The slime sqeuals, collapsing into a pile of goo;
+
+#Description
+description = A small blob of green slime and happiness. Loves snacks;
