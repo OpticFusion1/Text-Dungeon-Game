@@ -95,10 +95,7 @@ public class Monster {
 		health += amount;
 	}
 
-	public void levelUp() {
-		attack++;
-		defense++;
-	}
-
+	public void increaseAttack() {attack++;}
+	public void increaseDefense() {defense++;}
 
 }

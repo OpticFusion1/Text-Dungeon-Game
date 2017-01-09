@@ -210,7 +210,7 @@ public class Game {
 				//Rest!
 				String restMessage = randomString(BlueprintBuilder.blueprintParseString("splash","restMessages"));
 				slowPrint(formatString(restMessage));
-				int amount = rand.nextInt(5)+1;
+				int amount = rand.nextInt(level/2+4)+level/2;
 				player.heal(amount);
 				slowPrint("Recovered " + amount + " health!");
 				break;
@@ -228,7 +228,7 @@ public class Game {
 
 			case 'h':
 				//Help
-				slowPrint("[A]ttack\n[D]efend\n[R]est\n[F]lee\n[S]tats\n[Q]uit",10);
+				slowPrint("[A]ttack\n[D]efend\n[R]est\n[F]lee\n[S]tats\n[I]nspect Enemy\n[Q]uit",10);
 				doTurn();
 				break;
 
@@ -237,6 +237,10 @@ public class Game {
 
 				slowPrint(enemy.getName()+":",5);
 				slowPrint(enemy.getDescription(),15);
+
+				slowPrint(enemy.getHealth() + "/" + enemy.getMaxHealth() + " health",15);
+				slowPrint(enemy.getAttack() + " attack",15);
+				slowPrint(enemy.getDefense() + " defense",15);
 
 				doTurn();
 				break;
@@ -282,11 +286,17 @@ public class Game {
 
 			diff = BlueprintBuilder.blueprintParseInt(internalName,"difficulty");
 		}
+ 
+ 		int halfLevel = level/2;
+ 		int modifier = 0;
+ 		if (halfLevel > 0) {
+			modifier = rand.nextInt(halfLevel) + halfLevel;
+		}	
 
 		String name = BlueprintBuilder.blueprintParseString(internalName,"name");
-		int health = BlueprintBuilder.blueprintParseInt(internalName,"health");
-		int attack = BlueprintBuilder.blueprintParseInt(internalName,"attack");
-		int defense = BlueprintBuilder.blueprintParseInt(internalName,"defense");
+		int health = BlueprintBuilder.blueprintParseInt(internalName,"health") + modifier;
+		int attack = BlueprintBuilder.blueprintParseInt(internalName,"attack") + modifier;
+		int defense = BlueprintBuilder.blueprintParseInt(internalName,"defense") + modifier;
 		double agression = BlueprintBuilder.blueprintParseDouble(internalName,"agression");
 
 		Monster m = new Monster(name,attack,defense,health,agression);
@@ -314,13 +324,20 @@ public class Game {
 
 		//Display level up info
 		slowPrint("Level up! [" + level + "]",10);
-		if (player.getHealth() < player.getMaxHealth()) {
-			slowPrint("HP fully restored!");
-		}
-		player.levelUp();
-		player.setHealth(player.getMaxHealth()+1);
+		slowPrint("HP increased and fully restored!");
+		slowPrint("What do you want to level up?\n[A]ttack\n[D]efense");
+		char action = getCommand("ad",scanner);
 
-		slowPrint(playerStatString());
+		//Upgrade something
+		if (action == 'a') {
+			player.increaseAttack();
+			slowPrint("Attack increased to " + player.getAttack() + "!");
+		}else if (action == 'd') {
+			player.increaseDefense();
+			slowPrint("Defense increased to " + player.getDefense() + "!");
+		}
+
+		player.setHealth(player.getMaxHealth()+1);
 
 		experienceToLevel *= 2;
 
