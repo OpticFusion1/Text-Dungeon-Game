@@ -5,6 +5,7 @@ name = Slime;
 attack = 5;
 defense = 1;
 health = 5;
+speed = 3;
 
 #Chance of attacking
 agression = 0.5;

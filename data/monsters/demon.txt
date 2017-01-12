@@ -5,6 +5,7 @@ name = Demon;
 attack = 12;
 defense = 10;
 health = 15;
+speed = 5;
 
 #Chance of attacking
 agression = 0.75;

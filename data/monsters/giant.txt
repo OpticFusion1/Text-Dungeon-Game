@@ -5,6 +5,7 @@ name = Giant;
 attack = 10;
 defense = 10;
 health = 20;
+speed = 2;
 
 #Chance of attacking
 agression = 2;

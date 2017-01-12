@@ -36,6 +36,8 @@ public class Game {
 	int level = 1;
 	int experienceToLevel = 15;
 
+	static int textSpeed = 1;
+
 	//Game constructor and beginning
 	public Game() {
 
@@ -70,11 +72,16 @@ public class Game {
 		}
 
 		//Initialize player and monster refrence object
-		player = new Monster("You",5,5,10,0);
+		player = new Monster("You",5,5,5,10,0);
 
 		//Get random player item
 		String items = BlueprintBuilder.blueprintParseString("splash","dungeonObjects");
 		randomItem = randomString(items);
+
+		//Get text speed
+		System.out.println("Please select a text scroll speed");
+		System.out.println("0 - Instant\n1 - Fast\n2 - Normal\n3 - Slow");
+		textSpeed = getCommand("0123",scanner) - '0';
 
 		//Begin game!!
 		slowPrint("You enter the dungeon, armed with nothing but your wits, cunning, and a " + randomItem + ". What adventure awaits you in these long forgotten catacombs?");
@@ -135,6 +142,14 @@ public class Game {
 				//Attack!
 				slowPrint(formatString("You attack the [ENEMY]!"));
 				pause(100);
+
+				//Do we hit?
+				if (player.getSpeed() + rollDice(6) < enemy.getSpeed()) {
+					slowPrint(formatString("The [ENEMY] dodges the attack!"));
+					break;//Exit attack block early
+				}
+
+
 				//Is the enemy defending?
 				if (!isEnemyAttacking) {
 					slowPrint(formatString("The [ENEMY] defends themself!"));
@@ -144,7 +159,7 @@ public class Game {
 				System.out.println();
 
 				//Critical hit
-				if (rand.nextDouble() <= level * 0.05) {
+				if (rollDice(20) == 20) {
 					slowPrint("Critical hit! Damage doubled");
 					String critMessage = randomString(BlueprintBuilder.blueprintParseString("splash","critMessages"));
 					slowPrint(formatString(critMessage)+"\n");
@@ -192,7 +207,7 @@ public class Game {
 				//Flee!
 
 				//Calculate chance of success
-				double chance = (double)player.getHealth()/player.getMaxHealth();
+				double chance = (double)player.getHealth() + player.getSpeed()/player.getMaxHealth();
 				//You flee if your health percentage is greater than the enemy's agression
 				if (chance >= enemy.getAgression()) {
 					//Success!
@@ -228,7 +243,8 @@ public class Game {
 
 			case 'h':
 				//Help
-				slowPrint("[A]ttack\n[D]efend\n[R]est\n[F]lee\n[S]tats\n[I]nspect Enemy\n[Q]uit",10);
+				slowPrint("[A]ttack - Deal damage to the enemy\n[D]efend - Absorb damage from the enemy\n[R]est - Regain lost health\n[F]lee - Run away\n[S]tats - View your stats\n[I]nspect Enemy - View the enemy's stats\n[Q]uit - Quit the game",10);
+				slowPrint("\nStats:\nAttack - How much damage you deal\nDefense - How much damage you can absorb\nSpeed - Increases odds of dodging attacks and fleeing",10);
 				doTurn();
 				break;
 
@@ -241,6 +257,7 @@ public class Game {
 				slowPrint(enemy.getHealth() + "/" + enemy.getMaxHealth() + " health",15);
 				slowPrint(enemy.getAttack() + " attack",15);
 				slowPrint(enemy.getDefense() + " defense",15);
+				slowPrint(enemy.getSpeed() + " speed",15);
 
 				doTurn();
 				break;
@@ -251,6 +268,12 @@ public class Game {
 			//Attack!
 			slowPrint(formatString("The [ENEMY] attacks you!!"));
 			pause(100);
+
+			//Do they hit?
+			if (player.getSpeed() - rollDice(6) + (!isPlayerDefending ? 2 : 0) > enemy.getSpeed()) {
+				slowPrint(formatString("You dodge the [ENEMY]'s attack!"));
+				doTurn();//Exit attack block early
+			}
 
 			int enemyDamageAmount = enemy.getAttack();
 			//Attack the enemy and find out how much damage is dealt
@@ -297,9 +320,10 @@ public class Game {
 		int health = BlueprintBuilder.blueprintParseInt(internalName,"health") + modifier;
 		int attack = BlueprintBuilder.blueprintParseInt(internalName,"attack") + modifier;
 		int defense = BlueprintBuilder.blueprintParseInt(internalName,"defense") + modifier;
+		int speed = BlueprintBuilder.blueprintParseInt(internalName,"speed") + modifier;
 		double agression = BlueprintBuilder.blueprintParseDouble(internalName,"agression");
 
-		Monster m = new Monster(name,attack,defense,health,agression);
+		Monster m = new Monster(name,attack,defense,speed,health,agression);
 
 		String splashMessages = BlueprintBuilder.blueprintParseString(internalName,"splashMessages");
 		if (splashMessages.length() > 0) m.setSplashMessages(splashMessages);
@@ -325,16 +349,25 @@ public class Game {
 		//Display level up info
 		slowPrint("Level up! [" + level + "]",10);
 		slowPrint("HP increased and fully restored!");
-		slowPrint("What do you want to level up?\n[A]ttack\n[D]efense");
-		char action = getCommand("ad",scanner);
+		slowPrint("What do you want to level up?\n[A]ttack\n[D]efense\n[S]peed");
+		char action = getCommand("ads",scanner);
 
 		//Upgrade something
-		if (action == 'a') {
-			player.increaseAttack();
-			slowPrint("Attack increased to " + player.getAttack() + "!");
-		}else if (action == 'd') {
-			player.increaseDefense();
-			slowPrint("Defense increased to " + player.getDefense() + "!");
+		switch (action) {
+			case 'a':
+				player.increaseAttack();
+				slowPrint("Attack increased to " + player.getAttack() + "!");
+				break;
+
+			case 'd':
+				player.increaseDefense();
+				slowPrint("Defense increased to " + player.getAttack() + "!");
+				break;
+
+			case 's':
+				player.increaseSpeed();
+				slowPrint("Speed increased to " + player.getSpeed() + "!");
+				break;
 		}
 
 		player.setHealth(player.getMaxHealth()+1);
@@ -344,7 +377,7 @@ public class Game {
 	}
 
 	private String playerStatString() {
-		String statString = "Health: " + player.getHealth() + "/" + player.getMaxHealth() + "\nAttack: " + player.getAttack() + "\nDefense: " + player.getDefense();
+		String statString = "Health: " + player.getHealth() + "/" + player.getMaxHealth() + "\nAttack: " + player.getAttack() + "\nDefense: " + player.getDefense() + "\nSpeed: " + player.getSpeed();
 		return statString;
 	}
 
@@ -363,7 +396,7 @@ public class Game {
 	//Print a message over time
 	public static void slowPrint(String message, int delay, boolean newline) {
 		for (int i=0;i<message.length();i++) {
-			pause(delay);
+			pause(delay/2 * textSpeed);
 			System.out.print(message.charAt(i));
 		}
 		if (newline) System.out.println();
@@ -403,6 +436,10 @@ public class Game {
 		String[] arr = str.split("\\|");
 		int rnd = rand.nextInt(arr.length);
     	return arr[rnd];
+	}
+
+	private int rollDice(int sides) {
+		return rand.nextInt(sides-1) + 1;
 	}
 
 

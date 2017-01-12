@@ -5,6 +5,7 @@ name = Unicorn;
 attack = 7;
 defense = 7;
 health = 7;
+speed = 4;
 
 #Chance of attacking
 agression = 0.4;

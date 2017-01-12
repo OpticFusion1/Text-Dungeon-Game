@@ -5,6 +5,7 @@ name = Vampire;
 attack = 8;
 defense = 3;
 health = 10;
+speed = 6;
 
 #Chance of attacking
 agression = 1.5;

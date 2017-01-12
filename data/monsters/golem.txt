@@ -5,6 +5,7 @@ name = Stone Golem;
 attack = 15;
 defense = 5;
 health = 5;
+speed = 1;
 
 #Chance of attacking
 agression = 0.5;

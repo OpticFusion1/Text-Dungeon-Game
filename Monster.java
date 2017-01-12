@@ -7,6 +7,7 @@ public class Monster {
 	private int defense;
 	private int health;
 	private int maxHealth;
+	private int speed;
 
 	private String[] splashMessages;
 	private String deathMessage;
@@ -22,13 +23,15 @@ public class Monster {
 		name = "UNDEFINED";
 		attack = 0;
 		defense = 0;
+		speed = 0;
 		setHealth(0);
 	}
 
-	public Monster(String n, int a, int d, int h, double ag) {
+	public Monster(String n, int a, int d, int s, int h, double ag) {
 		name = n;
 		attack = a;
 		defense = d;
+		speed = s;
 		setHealth(h);
 		agression = ag;
 		setSplashMessages(name + " is here");
@@ -46,6 +49,7 @@ public class Monster {
 	public int getMaxHealth() {return maxHealth;}
 	public int getDefense() {return defense;}
 	public int getAttack() {return attack;}
+	public int getSpeed() {return speed;}
 	public double getAgression() {return agression;}
 	public int getExperience() {return experienceValue;}
 	public String getSplashMessage() {
@@ -97,5 +101,6 @@ public class Monster {
 
 	public void increaseAttack() {attack++;}
 	public void increaseDefense() {defense++;}
+	public void increaseSpeed() {speed++;}
 
 }

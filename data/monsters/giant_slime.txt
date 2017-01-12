@@ -5,6 +5,7 @@ name = Giant Slime;
 attack = 7;
 defense = 5;
 health = 25;
+speed = 0;
 
 #Chance of attacking
 agression = 0.1;
