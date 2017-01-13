@@ -439,7 +439,7 @@ public class Game {
 	}
 
 	private int rollDice(int sides) {
-		return rand.nextInt(sides-1) + 1;
+		return rand.nextInt(sides) + 1;
 	}
 
 
